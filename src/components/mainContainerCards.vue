@@ -1,5 +1,6 @@
 <template>
   <div class="containerCards">
+    <!-- Ciclo l'array recuperato da mainComponent.vue e passo i restanti dati a mainCard.vue -->
     <div class="cards" v-for="(item, index) in itemAlbum" :key="index">
       <mainCard :cd="item"/>
     </div>
@@ -11,6 +12,7 @@ import mainCard from "./mainCard.vue";
 
 export default {
   props: {
+    // Recupero i dati dal mainComponent.vue
     itemAlbum: Array,
   },
   components: {

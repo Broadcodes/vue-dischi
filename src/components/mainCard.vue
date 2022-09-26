@@ -10,6 +10,7 @@
 <script>
 export default {
     props: {
+      // Recuper i dati da mainContainerCards.vue
     cd: Object,
   },
 }

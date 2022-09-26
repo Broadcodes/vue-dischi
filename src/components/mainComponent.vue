@@ -10,6 +10,7 @@ export default {
   components: {
     MainCard,
   },
+//   recupero i dati da app.vue
   props: {
     album: Array,
   },

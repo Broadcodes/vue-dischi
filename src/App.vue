@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  // Importo il package axios da npm
 import axios from "axios";
 
 import headerComponent from "./components/headerComponent.vue";
@@ -21,7 +22,9 @@ export default {
   name: "App",
   data() {
     return {
+      // variabile necessaria per gestire la schermata di caricamento in caso di rallentamento della rete
       loading: true,
+      // array in cui vengono salvati i dati dell'API
       itemDisk: [],
     };
   },
@@ -34,11 +37,14 @@ export default {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then(({ data, status }) => {
+
+        // Se vengono trovati i dati possono essere salvati i dati nell'array creato
         if (status === 200) {
           this.loading = false;
           this.itemDisk = data.response;
         }
       })
+      // In caso di errore il programma non termina perchè l'errore viene catturato dal catch
       .catch((e) => {
         this.loading = false;
         console.log(e.message);

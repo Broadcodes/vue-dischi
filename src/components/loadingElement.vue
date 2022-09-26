@@ -1,6 +1,5 @@
 <template>
   <div class="load">
-    <!-- <i class="imgLoading fa-solid fa-spinner"></i> -->
     <i class="imgLoading fa-solid fa-circle-notch"></i>
     <h2>LOADING...</h2>
   </div>
