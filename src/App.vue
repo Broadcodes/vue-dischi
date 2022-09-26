@@ -4,7 +4,8 @@
       <headerComponent />
     </header>
     <main>
-      <MainComponent :album="itemDisk"/>
+      <loadingElement v-if="this.loading"/>
+      <mainComponent v-else :album="itemDisk"/>
     </main>
   </div>
 </template>
@@ -13,29 +14,34 @@
 import axios from "axios";
 
 import headerComponent from "./components/headerComponent.vue";
-import MainComponent from "./components/mainComponent.vue";
+import mainComponent from "./components/mainComponent.vue";
+import loadingElement from "./components/loadingElement.vue";
 
 export default {
   name: "App",
   data() {
     return {
+      loading: true,
       itemDisk: [],
     };
   },
   components: {
     headerComponent,
-    MainComponent
+    mainComponent,
+    loadingElement
 },
   created() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then(({ data, status }) => {
         if (status === 200) {
+          this.loading = false;
           this.itemDisk = data.response;
         }
       })
       .catch((e) => {
-        e.message;
+        this.loading = false;
+        console.log(e.message);
       });
   },
 };

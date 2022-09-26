@@ -19,7 +19,7 @@ export default {
     .card{
         height: 100%;
         padding: 20px;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(204, 204, 204, 0.07);
 
         img{
             width: 100%;
