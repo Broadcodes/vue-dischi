@@ -1,25 +1,24 @@
 <template>
-  <header class="w-100 px-3 py-2">
-    <div class="logo">
-        <i class="logoImg fa-brands fa-spotify"></i>
-    </div>
+  <header>
+    <i class="logoImg fa-brands fa-spotify"></i>
   </header>
 </template>
 
 <script>
 export default {
-    name: 'headerComponent'
-}
+  name: "headerComponent",
+};
 </script>
 
 <style lang="scss" scoped>
-header{
-    background-color: #2e3a46;
-    height: 50px;
+header {
+  background-color: #2e3a46;
+  padding: 12px;
 
-    .logoImg{
-        font-size: 2rem;
-        color: #1ed760
-    }
+  .logoImg {
+    padding-left: 10px;
+    font-size: 2rem;
+    color: #1ed760;
+  }
 }
 </style>

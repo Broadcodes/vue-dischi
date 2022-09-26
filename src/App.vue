@@ -4,7 +4,7 @@
       <headerComponent />
     </header>
     <main>
-      <MainComponent />
+      <MainComponent :album="itemDisk"/>
     </main>
   </div>
 </template>
@@ -31,8 +31,7 @@ export default {
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then(({ data, status }) => {
         if (status === 200) {
-          this.itemDisk.push(data.response);
-          console.log(data.response);
+          this.itemDisk = data.response;
         }
       })
       .catch((e) => {
@@ -43,15 +42,13 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/styleBootstrapt.scss";
-
-#app {
-  font-family: sans-serif;
-
-  * {
+ * {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
   }
+
+#app {
+  font-family: sans-serif;
 }
 </style>
