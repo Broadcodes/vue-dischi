@@ -3,7 +3,9 @@
     <header>
       <headerComponent />
     </header>
-    <main></main>
+    <main>
+      <MainComponent />
+    </main>
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 import axios from "axios";
 
 import headerComponent from "./components/headerComponent.vue";
+import MainComponent from "./components/mainComponent.vue";
 
 export default {
   name: "App",
@@ -21,7 +24,8 @@ export default {
   },
   components: {
     headerComponent,
-  },
+    MainComponent
+},
   created() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")

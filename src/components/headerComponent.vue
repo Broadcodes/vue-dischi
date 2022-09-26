@@ -15,6 +15,7 @@ export default {
 <style lang="scss" scoped>
 header{
     background-color: #2e3a46;
+    height: 50px;
 
     .logoImg{
         font-size: 2rem;
