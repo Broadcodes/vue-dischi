@@ -22,6 +22,6 @@ main {
   background-color: #1e2d3b;
   display: flex;
   align-items: center;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 55px);
 }
 </style>

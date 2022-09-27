@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <headerComponent />
+      <headerComponent :albumSearch="itemDisk"/>
     </header>
     <main>
       <loadingElement v-if="this.loading"/>
