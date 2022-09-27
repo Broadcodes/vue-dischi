@@ -6,13 +6,25 @@
       <i class="filter fa-solid fa-filter"></i>
     </div>
     <div class="areaSearchBox">
-      <select name="filterDisk" id="filterDisk">
+      <select name="filterDisk" id="filterDisk" v-model="disk" @click="selectDisk()">
         <option value="">Filtra per dischi</option>
-        <option v-for="diskListObj in albumSearch" :key="diskListObj.title" value="A">{{diskListObj.title}}</option>
+        <option
+          v-for="diskListObj in albumSearch"
+          :key="diskListObj.title"
+          :value="diskListObj.title"
+        >
+          {{ diskListObj.title }}
+        </option>
       </select>
       <select name="filterAlbum" id="filterAlbum">
         <option value="">Filtra per album</option>
-        <option v-for="diskListObj in albumSearch" :key="diskListObj.title" value="A">{{diskListObj.author}}</option>
+        <option
+          v-for="diskListObj in albumSearch"
+          :key="diskListObj.title"
+          :value="diskListObj.author"
+        >
+          {{ diskListObj.author }}
+        </option>
       </select>
     </div>
   </header>
@@ -24,10 +36,11 @@ export default {
   data() {
     return {
       viewAreaSearchBox: false,
+      disk: '',
     };
   },
-  props:{
-    albumSearch: Array
+  props: {
+    albumSearch: Array,
   },
   methods: {
     viewAreaSearch() {
@@ -41,6 +54,9 @@ export default {
         areaSearchBox.classList.add("viewBox");
       }
     },
+    selectDisk(){
+      this.$emit('searchDisk', this.disk);
+    }
   },
 };
 </script>

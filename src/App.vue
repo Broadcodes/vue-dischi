@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <header>
-      <headerComponent :albumSearch="itemDisk"/>
+      <headerComponent :albumSearch="itemDisk" @searchDisk="filterDisk"/>
     </header>
     <main>
       <loadingElement v-if="this.loading"/>
-      <mainComponent v-else :album="itemDisk"/>
+      <mainComponent v-else :album="itemDiskToViewBeforeFilter"/>
     </main>
   </div>
 </template>
@@ -26,7 +26,22 @@ export default {
       loading: true,
       // array in cui vengono salvati i dati dell'API
       itemDisk: [],
+      itemDiskToViewBeforeFilter: [],
     };
+  },
+  methods:{
+    filterDisk(disk){
+
+      let arr = [];
+
+      this.itemDisk.forEach(item => {
+        if(item.title.indexOf(disk) > -1){
+          arr.push(item);
+        }
+      });
+
+      this.itemDiskToViewBeforeFilter = arr;
+    }
   },
   components: {
     headerComponent,
@@ -42,6 +57,7 @@ export default {
         if (status === 200) {
           this.loading = false;
           this.itemDisk = data.response;
+          this.itemDiskToViewBeforeFilter = data.response;
         }
       })
       // In caso di errore il programma non termina perchè l'errore viene catturato dal catch
