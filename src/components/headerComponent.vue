@@ -6,7 +6,7 @@
       <i class="filter fa-solid fa-filter"></i>
     </div>
     <div class="areaSearchBox">
-      <select name="filterDisk" id="filterDisk" v-model="disk" @click="selectDisk()">
+      <select name="filterDisk" id="filterDisk" v-model="disk" @click="selectDisk()" @keyup="selectDisk()">
         <option value="">Filtra per dischi</option>
         <option
           v-for="diskListObj in albumSearch"
@@ -16,7 +16,7 @@
           {{ diskListObj.title }}
         </option>
       </select>
-      <select name="filterAlbum" id="filterAlbum">
+      <select name="filterAlbum" id="filterAlbum" v-model="album" @click="selectAlbum()" @keyup="selectAlbum()">
         <option value="">Filtra per album</option>
         <option
           v-for="diskListObj in albumSearch"
@@ -37,6 +37,7 @@ export default {
     return {
       viewAreaSearchBox: false,
       disk: '',
+      album: '',
     };
   },
   props: {
@@ -56,6 +57,9 @@ export default {
     },
     selectDisk(){
       this.$emit('searchDisk', this.disk);
+    },
+    selectAlbum(){
+      this.$emit('searchAlbum', this.album);
     }
   },
 };

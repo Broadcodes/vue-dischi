@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <header>
-      <headerComponent :albumSearch="itemDisk" @searchDisk="filterDisk"/>
+      <headerComponent
+        :albumSearch="itemDisk"
+        @searchDisk="filterDisk"
+        @searchAlbum="filterAlbum"
+      />
     </header>
     <main>
-      <loadingElement v-if="this.loading"/>
-      <mainComponent v-else :album="itemDiskToViewBeforeFilter"/>
+      <loadingElement v-if="this.loading" />
+      <mainComponent v-else :album="itemDiskToViewBeforeFilter" />
     </main>
   </div>
 </template>
 
 <script>
-  // Importo il package axios da npm
+// Importo il package axios da npm
 import axios from "axios";
 
 import headerComponent from "./components/headerComponent.vue";
@@ -29,13 +33,23 @@ export default {
       itemDiskToViewBeforeFilter: [],
     };
   },
-  methods:{
-    filterDisk(disk){
-
+  methods: {
+    filterDisk(disk) {
       let arr = [];
 
-      this.itemDisk.forEach(item => {
-        if(item.title.indexOf(disk) > -1){
+      this.itemDisk.forEach((item) => {
+        if (item.title.indexOf(disk) > -1) {
+          arr.push(item);
+        }
+      });
+
+      this.itemDiskToViewBeforeFilter = arr;
+    },
+    filterAlbum(album) {
+      let arr = [];
+
+      this.itemDisk.forEach((item) => {
+        if (item.author.indexOf(album) > -1) {
           arr.push(item);
         }
       });
@@ -46,13 +60,12 @@ export default {
   components: {
     headerComponent,
     mainComponent,
-    loadingElement
-},
+    loadingElement,
+  },
   created() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then(({ data, status }) => {
-
         // Se vengono trovati i dati possono essere salvati i dati nell'array creato
         if (status === 200) {
           this.loading = false;
@@ -70,11 +83,11 @@ export default {
 </script>
 
 <style lang="scss">
- * {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
 
 #app {
   font-family: sans-serif;
