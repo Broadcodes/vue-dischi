@@ -38,7 +38,7 @@ export default {
       let arr = [];
 
       this.itemDisk.forEach((item) => {
-        if (item.title.indexOf(disk) > -1) {
+        if (item.genre.indexOf(disk) > -1) {
           arr.push(item);
         }
       });

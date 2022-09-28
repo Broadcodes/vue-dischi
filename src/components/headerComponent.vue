@@ -7,13 +7,13 @@
     </div>
     <div class="areaSearchBox">
       <select name="filterDisk" id="filterDisk" v-model="disk" @click="selectDisk()" @keyup="selectDisk()">
-        <option value="">Filtra per dischi</option>
+        <option value="">Filtra per genere</option>
         <option
-          v-for="diskListObj in albumSearch"
-          :key="diskListObj.title"
-          :value="diskListObj.title"
+          v-for="(diskList, index) in filterDiskGenre()"
+          :key="index"
+          :value="diskList"
         >
-          {{ diskListObj.title }}
+          {{ diskList }}
         </option>
       </select>
       <select name="filterAlbum" id="filterAlbum" v-model="album" @click="selectAlbum()" @keyup="selectAlbum()">
@@ -60,6 +60,17 @@ export default {
     },
     selectAlbum(){
       this.$emit('searchAlbum', this.album);
+    },
+    filterDiskGenre(){
+      const genreDisk = [];
+
+      this.albumSearch.forEach(disk => {
+        if(!genreDisk.includes(disk.genre)){
+          genreDisk.push(disk.genre);
+        }
+      });
+
+      return genreDisk;
     }
   },
 };
